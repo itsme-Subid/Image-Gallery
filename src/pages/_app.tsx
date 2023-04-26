@@ -66,8 +66,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta charSet="utf-8" />
         <title>
-          Tojo - Online stock trading at lowest prices from India&apos;s biggest
-          stock broker
+          Image Gallery
         </title>
         <link rel="icon" href="/icon/favicon.ico" />
         <meta
