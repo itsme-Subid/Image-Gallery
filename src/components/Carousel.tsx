@@ -1,11 +1,26 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
+import { ImageType } from "../../image";
 
 const CarouselStyled = styled.div<{ currentSlide: number }>`
   position: relative;
   width: 100%;
   height: 100%;
+  & .desc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(var(--light-color), 0.75);
+    backdrop-filter: blur(0.5rem);
+    color: rgb(var(--dark-color));
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+    z-index: 1;
+  }
   & .slides {
     height: 100%;
     width: 80%;
@@ -19,6 +34,7 @@ const CarouselStyled = styled.div<{ currentSlide: number }>`
       height: 100%;
       object-fit: cover;
       border-radius: 0.5rem;
+      position: relative;
     }
   }
   & .buttons {
@@ -100,11 +116,13 @@ const Carousel = ({
   slideId = 0,
   autoSlide = false,
   autoSlideInterval = 2000,
+  images,
 }: {
   children: React.ReactNode[];
   slideId?: number;
   autoSlide?: boolean;
   autoSlideInterval?: number;
+  images?: ImageType[];
 }) => {
   const [currentSlide, setCurrentSlide] = useState(slideId);
   const previousSlide = () => {
@@ -125,6 +143,9 @@ const Carousel = ({
 
   return (
     <CarouselStyled currentSlide={currentSlide}>
+      <div className="desc">
+        <h1>{images && images[images.length + currentSlide]?.desc!}</h1>
+      </div>
       <div className="slides">{slides}</div>
       <div className="buttons">
         <button onClick={() => previousSlide()}>

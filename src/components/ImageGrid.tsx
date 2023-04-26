@@ -74,7 +74,7 @@ const ImageGrid = ({ images }: { images: ImageType[] }) => {
           >
             <GrClose />
           </button>
-          <Carousel slideId={images.length - showCarousel.id}>
+          <Carousel slideId={images.length - showCarousel.id} images={images}>
             {images.map((image) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img key={image.id} src={image.img} alt={image.desc} />
